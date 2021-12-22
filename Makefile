@@ -6,7 +6,7 @@
 #    By: mtsuji <mtsuji@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/21 22:03:46 by mtsuji            #+#    #+#              #
-#    Updated: 2021/12/21 22:21:38 by mtsuji           ###   ########.fr        #
+#    Updated: 2021/12/22 18:33:47 by mtsuji           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,8 +81,8 @@ NAME	=	libft.a
 	${CC} ${CFLAGS} -I ${HEADER} -c $< -o ${<:.c=.o}
 
 all:	${NAME_CLIENT} ${NAME_SERVER}
-$(NAME_CLIENT):	${OBJS_CLIENT}
-$(NAME_SERVER):	${OBJS_SERVER}
+${NAME_CLIENT}:	${OBJS_CLIENT}
+${NAME_SERVER}:	${OBJS_SERVER}
 			${CC} ${CFLAGS} ${SRCS_CLIENT} -o ${NAME_CLIENT}
 			${CC} ${CFLAGS} ${SRCS_SERVER} -o ${NAME_SERVER}
 
