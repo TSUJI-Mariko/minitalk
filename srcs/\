@@ -1,48 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtsuji <mtsuji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/23 10:15:56 by mtsuji            #+#    #+#             */
-/*   Updated: 2021/12/28 23:16:14 by mtsuji           ###   ########.fr       */
+/*   Created: 2021/12/23 10:16:16 by mtsuji            #+#    #+#             */
+/*   Updated: 2021/12/27 16:58:21 by mtsuji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minitalk.h"
 
-void	bit_handler(int signum)
+void	send_char_to_bit(pid_t pid, char c)
 {
-	static int	bit_received = 0;
-	static char	c = 0;
+	int	bit;
 
-	if (signum == SIGUSR1)
-		c |= (1 << bit_received); //pour avoir 8bits
-	bit_received++;
-	if (bit_received == 8)
+	bit = 0;
+	while (bit < 8)
 	{
-		write(1, &c, 1);
-		if (c == '\0')
-			ft_putchar('\n');
-		bit_received = 0;
-		c = 0;
+		if (c & (1 << bit))
+			kill(pid, SIGUSR1);
+		else
+			kill(pid, SIGUSR1);
+		bit++;
+		usleep(100);
 	}
 }
 
-int	main(void)
+void	send_string(pid_t pid, char *str)
 {
+	while (*str)
+	{
+		send_char_to_bit(pid, *str);
+		str++;
+	}
+	send_char_to_bit(pid, '\0');
+}
+
+int	main(int argc, char *argv[])
+{
+	char	*str;
 	pid_t	pid;
 
-	pid = getpid();
-	ft_putstr("PID:");
-	ft_putnbr(pid);
-	ft_putchar('\n');
-	while (1)
+	if (argc == 3)
 	{
-		signal(SIGUSR1, bit_handler);
-		signal(SIGUSR2, bit_handler);
-		pause();
+		pid = ft_atoi(argv[1]);
+		str = argv[2];
+		send_string(pid, str);
 	}
+	else
+		ft_putstr("Error\n");
 	return (0);
 }
+
