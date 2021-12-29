@@ -6,7 +6,7 @@
 /*   By: mtsuji <mtsuji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 10:15:56 by mtsuji            #+#    #+#             */
-/*   Updated: 2021/12/28 23:16:14 by mtsuji           ###   ########.fr       */
+/*   Updated: 2021/12/29 13:19:53 by mtsuji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ int	main(void)
 	pid_t	pid;
 
 	pid = getpid();
-	ft_putstr("PID:");
+	ft_putstr("PID is :");
 	ft_putnbr(pid);
 	ft_putchar('\n');
-	while (1)
+	while (1)//無限ループ
 	{
 		signal(SIGUSR1, bit_handler);
 		signal(SIGUSR2, bit_handler);
-		pause();
+		pause();//何かシグナルが補填されるまで実行を停止する。
 	}
 	return (0);
 }

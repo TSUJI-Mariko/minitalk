@@ -6,7 +6,7 @@
 /*   By: mtsuji <mtsuji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 18:38:09 by mtsuji            #+#    #+#             */
-/*   Updated: 2021/12/27 16:01:21 by mtsuji           ###   ########.fr       */
+/*   Updated: 2021/12/29 14:00:27 by mtsuji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 void	ft_putchar(char c);
 void	ft_putstr(char *str);
-size_t	ft_strlen(const char *s);
+//size_t	ft_strlen(const char *s);
 int		ft_atoi(const char *str);
 void	ft_putnbr(int nb);
 
