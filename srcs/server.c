@@ -6,7 +6,7 @@
 /*   By: mtsuji <mtsuji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 10:15:56 by mtsuji            #+#    #+#             */
-/*   Updated: 2021/12/29 13:19:53 by mtsuji           ###   ########.fr       */
+/*   Updated: 2021/12/29 18:17:38 by mtsuji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	bit_handler(int signum)
 	static char	c = 0;
 
 	if (signum == SIGUSR1)
-		c |= (1 << bit_received); //pour avoir 8bits
+		c |= (1 << bit_received);
 	bit_received++;
 	if (bit_received == 8)
 	{
@@ -38,11 +38,11 @@ int	main(void)
 	ft_putstr("PID is :");
 	ft_putnbr(pid);
 	ft_putchar('\n');
-	while (1)//無限ループ
+	while (1)
 	{
 		signal(SIGUSR1, bit_handler);
 		signal(SIGUSR2, bit_handler);
-		pause();//何かシグナルが補填されるまで実行を停止する。
+		pause();
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mtsuji <mtsuji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 10:16:16 by mtsuji            #+#    #+#             */
-/*   Updated: 2021/12/29 13:52:40 by mtsuji           ###   ########.fr       */
+/*   Updated: 2021/12/29 18:15:27 by mtsuji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	send_char_to_bit(pid_t pid, char c)
 	bit = 0;
 	while (bit < 8)
 	{
-		if (c & (1 << bit))//データの一部分を調べている？
-			kill(pid, SIGUSR1);//30
+		if (c & (1 << bit))
+			kill(pid, SIGUSR1);
 		else
-			kill(pid, SIGUSR2);//31
+			kill(pid, SIGUSR2);
 		bit++;
 		usleep(500);
 	}
@@ -53,4 +53,3 @@ int	main(int argc, char *argv[])
 		ft_putstr("Error!\n");
 	return (0);
 }
-
